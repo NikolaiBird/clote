@@ -28,15 +28,6 @@
             color:#ddd;
             font-family: monospace, sans-serif;
             font-size:14px;
-            padding:10px;
-        }
-        #editor{
-            margin:0;
-            outline: 0;
-        }
-        #content{
-            height: 100%;
-            box-sizing: border-box;
             
         }
         .title{
@@ -101,8 +92,10 @@
             font-size: 16px;
             outline: 0;
         }
-        .hide{
-            display: none;
+        #topbar{
+            /*position: fixed; */
+            width: 100%;
+            background-color: #000;
         }
         #filters{
             
@@ -111,73 +104,89 @@
             content: "Filters: ";
             color:#999;
         }
+        .hide{
+            display: none;
+        }
+        #editor{
+            margin:0;
+            outline: 0;
+            
+        }
+        #editorcontainer{
+            /*border:1px solid red;
+            overflow-y: auto;
+            height:100%;
+            width:100%;
+            top:70px;
+            position: fixed; 
+            */
+        }
         
     </style>
 </head>
 <body>
-    
-    
-    <div id="content">
-        
-        <div style="width:100%; ">
-            <input type="text" id="cli" list="cliData">
-            <div id="filters"></div>
-        </div>
-        <div id="editor" contenteditable="true" onkeyup="keyD()">
-            <div class="title">_First title</div>
-            <div class="bullet">Hello World. How are you?</div>
-            <div class="bullet">What time is it?</div>
-            <div class="question">? This is a question</div>
-            <div class="indent">&gt; more on this question</div>
-            <div class="title">_Another title #MarketPlace</div>
-            <div class="task">[] task 1 #tag</div>
-            <div class="task">[] This must get done</div>
-            <div class="indent">&gt; more on this task</div>
-            <div class="taskDone">[X] done task</div>
-            <div class="urgent">! This is urgent</div>
-            <div class="bullet">Some more bullets</div>
-            <div class="bullet">Life is a bottle</div>
-            <div class="title">_I Love Title</div>
-            <div class="question">? What time is it?</div>
-            <div class="bullet">The fog settles</div>
-            <div class="indent">&gt; More stuff about this. Further to the above</div>
-            <div class="indent">&gt; Apple Dapple</div>
-            <div class="indent">&gt; Ming moo pong</div>
-            <div class="bullet">Bikers bike and fish swim when birds fly.</div>
-            <div class="bullet">[Use this to show wiki link to a title]</div>
-            <div class="urgent">! Use #xxx to tag an item. Put it at the end of the bullet.</div>
-            
-            <div class="title">_Help - Command Line</div>
-            <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
-            <div class="bullet">To create a note, write something in the command line and hit enter.</div>
-            <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
-            <div class="indent">&gt; They look like this</div>
-            <div class="bullet">To create a task, type: [] task name then hit enter.</div>
-            <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
-            <div class="indent">&gt; see _Help - Editing to change tasks</div>
-            <div class="bullet">For an urgent message, type ! followed by the note.</div>
-            <div class="urgent">! This is urgent</div>
-            <div class="bullet">You can type [date] which will automatically insert the date.</div>
-            <div class="bullet">To tag a note use #tag at the end of the note.</div>
-            <div class="bullet">To tag a section use a tag at the end of the title.</div>
-            
-            <div class="title">_Help - Editing</div>
-            <div class="bullet">Notes can be edited inline. Just click or use the arrow keys.</div>
-            
-            <div class="title">_Help - Filtering</div>
-            <div class="bullet">Use the command line for filtering. Filtering limits the notes on page.</div>
-            <div class="bullet">To create a filter, start with a colon : followed by the filter.</div>
-            <div class="bullet">To filter by title, type :_ followed by the title.</div>
-            <div class="bullet">To filter by key word, type : followed by the word.</div>
-            <div class="bullet">To filter by tasks, type :/tasks.</div>
-            <div class="indent">&gt; You can also type :/todo and :/done</div>
-            <div class="bullet">To filter by tag simply type :# followed by the tag name.</div>
-            <div class="bullet">You can have multiple filters if you seperate them by a comma.</div>
-            
-            
-        </div>
-        
+
+    <div id='topbar'>
+        <input type="text" id="cli" list="cliData">
+        <div id="filters"></div>
     </div>
+
+    <div id="editorcontainer">
+    <div id="editor" contenteditable="true" onkeyup="keyD()">
+        <div class="title">_First title</div>
+        <div class="bullet">Hello World. How are you?</div>
+        <div class="bullet">What time is it?</div>
+        <div class="question">? This is a question</div>
+        <div class="indent">&gt; more on this question</div>
+        <div class="title">_Another title #MarketPlace</div>
+        <div class="task">[] task 1 #tag</div>
+        <div class="task">[] This must get done</div>
+        <div class="indent">&gt; more on this task</div>
+        <div class="taskDone">[X] done task</div>
+        <div class="urgent">! This is urgent</div>
+        <div class="bullet">Some more bullets</div>
+        <div class="bullet">Life is a bottle</div>
+        <div class="title">_I Love Title</div>
+        <div class="question">? What time is it?</div>
+        <div class="bullet">The fog settles</div>
+        <div class="indent">&gt; More stuff about this. Further to the above</div>
+        <div class="indent">&gt; Apple Dapple</div>
+        <div class="indent">&gt; Ming moo pong</div>
+        <div class="bullet">Bikers bike and fish swim when birds fly.</div>
+        <div class="bullet">[Use this to show wiki link to a title]</div>
+        <div class="urgent">! Use #xxx to tag an item. Put it at the end of the bullet.</div>
+
+        <div class="title">_Help - Command Line</div>
+        <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
+        <div class="bullet">To create a note, write something in the command line and hit enter.</div>
+        <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
+        <div class="indent">&gt; They look like this</div>
+        <div class="bullet">To create a task, type: [] task name then hit enter.</div>
+        <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
+        <div class="indent">&gt; see _Help - Editing to change tasks</div>
+        <div class="bullet">For an urgent message, type ! followed by the note.</div>
+        <div class="urgent">! This is urgent</div>
+        <div class="bullet">You can type [date] which will automatically insert the date.</div>
+        <div class="bullet">To tag a note use #tag at the end of the note.</div>
+        <div class="bullet">To tag a section use a tag at the end of the title.</div>
+
+        <div class="title">_Help - Editing</div>
+        <div class="bullet">Notes can be edited inline. Just click or use the arrow keys.</div>
+
+        <div class="title">_Help - Filtering</div>
+        <div class="bullet">Use the command line for filtering. Filtering limits the notes on page.</div>
+        <div class="bullet">To create a filter, start with a colon : followed by the filter.</div>
+        <div class="bullet">To filter by title, type :_ followed by the title.</div>
+        <div class="bullet">To filter by key word, type : followed by the word.</div>
+        <div class="bullet">To filter by tasks, type :/tasks.</div>
+        <div class="indent">&gt; You can also type :/todo and :/done</div>
+        <div class="bullet">To filter by tag simply type :# followed by the tag name.</div>
+        <div class="bullet">You can have multiple filters if you seperate them by a comma.</div>
+
+
+    </div>
+    </div>
+
     
     <datalist id="cliDataOLD">
         <option value="[]">
