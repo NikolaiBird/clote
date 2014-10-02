@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<!-- saved from url=(0032)file:///C:/www/anteker/index.htm -->
+<!-- saved from url=(0055)file:///C:/Users/nbird/Documents/GitHub/clote/clote.htm -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
   <meta charset="utf-8">
-  <title>Jack Rocks</title>
+  <title>clote</title>
   <!-- link rel="stylesheet" href="css/bootstrap.css" media="screen" -->
     <style>
         /*
-        Blue        = #1A4F63
+        Blue        = #1d5d76
         Light Blue  = #068F86
         Green       = #6FD57F
         Yellow      = #FCB03C
         Orange      = #FC5B3F
         */
         html, body{
-            padding:0;
+            padding:5px;
             margin:0;
             height:100%;
             width:100%;
@@ -30,6 +30,11 @@
             font-size:14px;
             
         }
+        hr{
+            height:2px;
+            background-color:black;
+            border:none;
+        }
         .title{
             font-size:26px;
             padding:5px;
@@ -39,11 +44,11 @@
             color: #068F86;
         }
         .task{
-            color:#1A4F63;
+            color:#1d5d76;
             margin-left: 10px;
         }
         .taskDone{
-            color:#1A4F63;
+            color:#1d5d76;
             text-decoration: line-through;
             margin-left: 10px;
         }
@@ -121,72 +126,65 @@
             position: fixed; 
             */
         }
-        
+        #infopane{
+            
+        }
+        #report{
+            color:#555;
+        }
     </style>
 </head>
 <body>
 
-    <div id='topbar'>
+    <div id="topbar">
         <input type="text" id="cli" list="cliData">
         <div id="filters"></div>
     </div>
-
+    <div id="infopane" class="hide"><div>1 X marketplace</div><div>2 X tag</div><div>3 X xxx</div><div>1 X zzz</div></div>
     <div id="editorcontainer">
-    <div id="editor" contenteditable="true" onkeyup="keyD()">
-        <div class="title">_First title</div>
-        <div class="bullet">Hello World. How are you?</div>
-        <div class="bullet">What time is it?</div>
-        <div class="question">? This is a question</div>
-        <div class="indent">&gt; more on this question</div>
-        <div class="title">_Another title #MarketPlace</div>
-        <div class="task">[] task 1 #tag</div>
-        <div class="task">[] This must get done</div>
-        <div class="indent">&gt; more on this task</div>
-        <div class="taskDone">[X] done task</div>
-        <div class="urgent">! This is urgent</div>
-        <div class="bullet">Some more bullets</div>
-        <div class="bullet">Life is a bottle</div>
-        <div class="title">_I Love Title</div>
-        <div class="question">? What time is it?</div>
-        <div class="bullet">The fog settles</div>
-        <div class="indent">&gt; More stuff about this. Further to the above</div>
-        <div class="indent">&gt; Apple Dapple</div>
-        <div class="indent">&gt; Ming moo pong</div>
-        <div class="bullet">Bikers bike and fish swim when birds fly.</div>
-        <div class="bullet">[Use this to show wiki link to a title]</div>
-        <div class="urgent">! Use #xxx to tag an item. Put it at the end of the bullet.</div>
+        <div id="editor" contenteditable="true" onkeyup="keyD()">
 
-        <div class="title">_Help - Command Line</div>
-        <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
-        <div class="bullet">To create a note, write something in the command line and hit enter.</div>
-        <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
-        <div class="indent">&gt; They look like this</div>
-        <div class="bullet">To create a task, type: [] task name then hit enter.</div>
-        <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
-        <div class="indent">&gt; see _Help - Editing to change tasks</div>
-        <div class="bullet">For an urgent message, type ! followed by the note.</div>
-        <div class="urgent">! This is urgent</div>
-        <div class="bullet">You can type [date] which will automatically insert the date.</div>
-        <div class="bullet">To tag a note use #tag at the end of the note.</div>
-        <div class="bullet">To tag a section use a tag at the end of the title.</div>
+            <div class="title">_Help - Command Line</div>
+            <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
+            <div class="bullet">To create a note, write something in the command line and hit enter.</div>
+            <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
+            <div class="indent">&gt; They look like this</div>
+            <div class="bullet">To create a task, type: [] task name then hit enter.</div>
+            <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
+            <div class="indent">&gt; see _Help - Editing to change tasks</div>
+            <div class="bullet">For an urgent message, type ! followed by the note.</div>
+            <div class="urgent">! This is urgent</div>
+            <div class="bullet">You can type [date] which will automatically insert the date.</div>
+            <div class="bullet">To tag a note use #tag at the end of the note.</div>
+            <div class="bullet">To tag a section use a tag at the end of the title.</div>
 
-        <div class="title">_Help - Editing</div>
-        <div class="bullet">Notes can be edited inline. Just click or use the arrow keys.</div>
+            <div class="title">_Help - Editing</div>
+            <div class="bullet">Notes can be edited inline. Just click or use the arrow keys.</div>
 
-        <div class="title">_Help - Filtering</div>
-        <div class="bullet">Use the command line for filtering. Filtering limits the notes on page.</div>
-        <div class="bullet">To create a filter, start with a colon : followed by the filter.</div>
-        <div class="bullet">To filter by title, type :_ followed by the title.</div>
-        <div class="bullet">To filter by key word, type : followed by the word.</div>
-        <div class="bullet">To filter by tasks, type :/tasks.</div>
-        <div class="indent">&gt; You can also type :/todo and :/done</div>
-        <div class="bullet">To filter by tag simply type :# followed by the tag name.</div>
-        <div class="bullet">You can have multiple filters if you seperate them by a comma.</div>
+            <div class="title">_Help - Filtering</div>
+            <div class="bullet">Use the command line for filtering. Filtering limits the notes on page.</div>
+            <div class="bullet">To create a filter, start with a colon : followed by the filter.</div>
+            <div class="bullet">To filter by title, type :_ followed by the title.</div>
+            <div class="bullet">To filter by key word, type : followed by the word.</div>
+            <div class="bullet">To filter by tasks, type :/tasks.</div>
+            <div class="indent">&gt; You can also type :/todo and :/done</div>
+            <div class="bullet">To filter by tag simply type :# followed by the tag name.</div>
+            <div class="bullet">To get a list of all tags type :/tags.</div>
+            <div class="bullet">You can refine your filter by separating filters with a +.</div>
+            <div class="bullet">Hit enter to lock the filter in place.</div>
+            <div class="indent">&gt; Then clear the filter by typing : and enter.</div>
+            
+            <div class="title">_clote tasks</div>
+            <div class="task">[x] Use local storage to automatically save</div>
+            <div class="task">[] Stricter tag filtering</div>
+            <div class="task">[] Use URL for routing/filtering</div>
+            <div class="task">[x] CL bullets enter on last line of first visible section</div>
+            
 
 
+        </div>
     </div>
-    </div>
-
+    <div id="report"><hr><div>Line count: 82</div><div>Tasks: 14</div><div>Todos: 13 (2 urgent)</div><div>Dones: 1 (7%)</div></div>
     
     <datalist id="cliDataOLD">
         <option value="[]">
@@ -274,7 +272,6 @@
                 applyClass(el);
             }
             
-            
             return;
         }
         
@@ -283,8 +280,11 @@
                 
             if($(el).html().substring(0, 1) === "_"){
                 $(el).addClass("title");
-            }else if($(el).html().substring(0, 2) === "[]" || $(el).html().substring(0, 4) === "[ ] "){
+            }else if($(el).html().substring(0, 2) === "[]" || $(el).html().substring(0, 3) === "[ ]"){
                 $(el).addClass("task");
+                if($(el).html().substring(0, 3) === "[]!" || $(el).html().substring(0, 4) === "[ ]!"){
+                    $(el).addClass("urgent");
+                }
             }else if($(el).html().substring(0, 3).toLowerCase() === "[x]"){
                 $(el).addClass("taskDone");
             }else if($(el).html().substring(0, 4) === "&gt;" || $(el).html().substring(0, 1) === ">"){
@@ -298,8 +298,67 @@
             }
         }
         
+        function showAllTags(){
+            // Get and show all the tags in infopane
+            
+            var totalText = "";
+            var totalTags = {};
+            
+            // Gather up all the notes into one string called totalText
+            $('#editor').children('div').each(function () {
+                totalText += " " + $(this).text();
+            });
+            
+            // Split totalText by # then split by space and take the first result. This will be the tag
+            totalText = totalText.toLowerCase().split("#");
+            for(var i = 0; i < totalText.length; i++){
+                totalText[i] = totalText[i].split(" ");
+                if(totalText[i][0]){
+                    if(totalTags[totalText[i][0]]){
+                        totalTags[totalText[i][0]] ++;
+                    }else{
+                        totalTags[totalText[i][0]] = 1;
+                    }
+                }
+            }
+            
+            // put the list of tag objects into an array so we can sort them
+            var keys = [];
+            for (var k in totalTags){
+                if (totalTags.hasOwnProperty(k)){
+                    keys.push(k);
+                }
+            }
+            keys.sort();
+            
+            // Using the sorted keys we can now get the tag properties and print them out in order and with amounts
+            $("#infopane").html("");
+            for(var i = 0; i < keys.length; i ++){
+                $("#infopane").append("<div>"+totalTags[keys[i]]+" X "+keys[i]+"</div>");
+            }
+            
+            //console.log(keys);
+            //console.log(totalTags.xxx);
+        }
+        
         function filterBullets(){
             var filters = $("#filters").html();
+            
+            // Check info panel stuff
+            $("#infopane").addClass("hide");
+            if(filters.trim().toLowerCase() === "/tags"){
+                showAllTags();
+                $("#infopane").removeClass("hide");
+                
+                
+                $('#editor').children('div').each(function () {
+                    $(this).addClass("hide");
+                });
+                return;
+            }
+            
+            
+            
             filters = filters.split("+");
             
             var foundMatchingTitle = false;
@@ -321,7 +380,8 @@
                     
                     // Find all tasks
                     if(filters[i].substring(0, 1) === "/"){
-                    
+                        
+                        
                         if("/tasks".indexOf(filters[i]) > -1){
 
                             //console.log($(this).html() + " " + filters[i].trim() + " " + $(this).html().indexOf(filters[i].trim()));
@@ -440,6 +500,51 @@
             });
         }
         
+        function updateReports(){
+            // Run through all the active notes and draw some reports
+            
+            $("#report").html("<hr>");
+            var lines = [];
+            $('#editor').children('div').each(function () {
+                if(!$(this).hasClass('hide')){
+                    lines.push($(this).text());
+                }
+                
+            });
+            
+            
+            // Count number of lines
+            var lineCount = lines.length;
+            $("#report").append("<div>Line count: "+lineCount+"</div>");
+            
+            // Count number of tasks, todos and dones
+            var noTasks = 0;
+            var noTodos = 0;
+            var noDones = 0;
+            var noUrgent = 0;
+            for(var i = 0; i < lines.length; i++){
+                if(lines[i].substring(0, 2) === "[]" || lines[i].substring(0, 3) === "[ ]" || lines[i].toLowerCase().substring(0, 3) === "[x]"){
+                    noTasks++;
+                }
+                if(lines[i].substring(0, 2) === "[]" || lines[i].substring(0, 3) === "[ ]"){
+                    noTodos++;
+                }
+                if(lines[i].substring(0, 3) === "[]!" || lines[i].substring(0, 4) === "[ ]!"){
+                    noUrgent++;
+                }
+                
+                if(lines[i].toLowerCase().substring(0, 3) === "[x]"){
+                    noDones++;
+                }
+            }
+            var percentDone = parseInt(noDones/noTasks * 100);
+            $("#report").append("<div>Tasks: "+noTasks+"</div>");
+            $("#report").append("<div>Todos: "+noTodos+" ("+noUrgent+" urgent)</div>");
+            $("#report").append("<div>Dones: "+noDones+" ("+percentDone+"%)</div>");
+        }
+        
+        
+        
         function runCLI(cli){
             // add the command to the latest entry
             
@@ -456,22 +561,6 @@
                 }
                 
                 
-                // Add filters
-                /*
-                if(cli.substring(0, 2) === ":+"){
-                    cli = cli.substring(2, cli.length);
-                    cli = cli.split(",");
-                    for(var i = 0; i < cli.length; i++){
-                        cli[i] = cli[i].trim();
-                        if(cli[i]){
-                            if($("#filters").html()){$("#filters").append(", ")};
-                            $("#filters").append(cli[i]);
-                        }
-                    }
-                    filterBullets();
-                    return false;
-                }
-                */
                 
                 // Replace filters
                 $("#filters").html("");
@@ -484,6 +573,7 @@
                         $("#filters").append(cli[i]);
                     }
                 }
+                
                 filterBullets();
                 return false;
             }
@@ -498,43 +588,65 @@
                 applyClass($("#editor div:first-child"));
             }else{
                 
-                var i = 0;
+                
+                // Go through the list. The entry is meant to be on the last line of the first visible section
+                var cnt = $('#editor').children('div').length;
+                var secs = [];
                 var found = 0;
-                $('#editor').children('div').each(function () {
-                    if($(this).text().substring(0, 1) === "_" && found === 0){
-                        found = i;
+                
+                for(var i = 1; i < cnt+1; i++){
+                    if(!$( "#editor div:nth-child("+i+")" ).hasClass('hide')){
+                        //console.log($( "#editor div:nth-child("+i+")" ).text());
+                        if($( "#editor div:nth-child("+i+")" ).text().substring(0, 1) === "_"){
+                            secs.push(i);
+                        }
                     }
-                    i++
-                });
-
-                if(found > 0){
-                    $( "#editor div:nth-child("+found+")" ).after( "<div>"+cli+"</div>" );
-                    found++;
-                    applyClass($("#editor div:nth-child("+found+")"));
-                }else{
-                    $( "#editor" ).append( "<div>"+cli+"</div>" );
-                    applyClass($("#editor div:last-child"));
                 }
+                
+                if(secs[0] && secs[1]){
+                    // 2 sections showing - Place entry above second section
+                    found = secs[1]-1;
+                }else if(secs[0]){
+                    // 1 section showing - Place entry after the last entry
+                    found = cnt -1;
+                }else{
+                    // No sections showing - Place just under first section
+                    found = 1;
+                }
+                    
+                $( "#editor div:nth-child("+found+")" ).after( "<div>"+cli+"</div>" );
+                found++;
+                applyClass($("#editor div:nth-child("+found+")"));
+
 
             }
+            
+            
         }
         
-        function splitFilter(filter){
-            
-            // :/todos+#MarketPlace-#phase1
-            // #MarketPlace+/todos
-            
-            return filter;
+        function storeSet(data){
+            localStorage.setItem("data", data);
+            localStorage.setItem("date", Date());
+        }
+        function storeGet(){
+            var data = localStorage.getItem("data");
+            var date = localStorage.getItem("date");
+            return [data,date];
         }
         
         $('#cli').keyup(function(e) {
             if(e.which == 13) {
                 runCLI($('#cli').val());
+                updateReports();
                 $('#cli').val("");
+                storeSet($("#editor").html());
                 return false;
             }else if($('#cli').val().substring(0, 1) === ":"){
                 runCLI($('#cli').val());
+                updateReports();
+                storeSet($("#editor").html());
             }
+            
         });
         
         
@@ -546,9 +658,32 @@
                 //console.log(this); // "this" is the current element in the loop
                 applyClass(this);
             });
+            
+            // Hide info panel
+            $("#infopane").addClass("hide");
         
             // Set the focus on the editor on startup
             cli.focus();
+            
+            updateReports();
+            
+            // Get the local storage data if editor is empty
+            //if($("#editor").html().trim === ""){
+            var localData = storeGet();
+            var hardData = $("#editor").html();
+            
+            if(localData[0] !== hardData){
+                var r = confirm("Local stored data does not match file data. \n\nStored data was last edited " + localData[1] + " and is "+ localData[0].length + " bytes. \n\nFile data is "+hardData.length+" bytes. Replace file data?");
+                if (r === true) {
+                    $("#editor").html(localData[0]);
+                } else {
+                    
+                }
+            }
+
+            
+            
+            //}
         }
         
         
