@@ -132,18 +132,19 @@
         #report{
             color:#555;
         }
+        
     </style>
 </head>
 <body>
 
     <div id="topbar">
-        <input type="text" id="cli" list="cliData">
+        <input type="text" id="cli">
         <div id="filters"></div>
     </div>
     <div id="infopane" class="hide"><div>1 X marketplace</div><div>2 X tag</div><div>3 X xxx</div><div>1 X zzz</div></div>
     <div id="editorcontainer">
         <div id="editor" contenteditable="true" onkeyup="keyD()">
-
+			
             <div class="title">_Help - Command Line</div>
             <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
             <div class="bullet">To create a note, write something in the command line and hit enter.</div>
@@ -159,7 +160,7 @@
             <div class="bullet">To tag a section use a tag at the end of the title.</div>
 
             <div class="title">_Help - Editing</div>
-            <div class="bullet">Notes can be edited inline. Just click or use the arrow keys.</div>
+            <div class="bullet">Notes can be edited in-line. Just click or use the arrow keys.</div><div class="bullet">To create a new in-line note simply hit enter.</div>
 
             <div class="title">_Help - Filtering</div>
             <div class="bullet">Use the command line for filtering. Filtering limits the notes on page.</div>
@@ -172,30 +173,21 @@
             <div class="bullet">To get a list of all tags type :/tags.</div>
             <div class="bullet">You can refine your filter by separating filters with a +.</div>
             <div class="bullet">Hit enter to lock the filter in place.</div>
-            <div class="indent">&gt; Then clear the filter by typing : and enter.</div>
+            <div class="indent">&gt; Then clear the filter by typing : and enter.</div><div class="title">_Help - Saving</div><div class="bullet">Bullets (lines) are automatically saved to local storage.</div><div class="bullet">You can save/export this entire file by using CTRL+S. Simply save this entire web page.</div>
             
             <div class="title">_clote tasks</div>
-            <div class="task">[x] Use local storage to automatically save</div>
-            <div class="task">[] Stricter tag filtering</div>
+            <div class="taskDone">[x] Use local storage to automatically save</div>
+            <div class="task">[] Stricter tag filtering</div><div class="taskDone">[x] Tags found in title should show whole section<br></div>
             <div class="task">[] Use URL for routing/filtering</div>
-            <div class="task">[x] CL bullets enter on last line of first visible section</div>
+            <div class="taskDone">[x] CL bullets enter on last line of first visible section</div><div class="task">[] Fix localstorage for inline editing too</div>
             
 
 
         </div>
     </div>
-    <div id="report"><hr><div>Line count: 82</div><div>Tasks: 14</div><div>Todos: 13 (2 urgent)</div><div>Dones: 1 (7%)</div></div>
+    <div id="report"><hr><div>Line count: 122</div><div>Tasks: 19</div><div>Todos: 8 (0 urgent)</div><div>Dones: 11 (57%)</div></div>
     
-    <datalist id="cliDataOLD">
-        <option value="[]">
-        </option><option value="[x]">
-        </option><option value="Internet Explorer">
-        </option><option value="Firefox">
-        </option><option value="Chrome">
-        </option><option value="Opera">
-        </option><option value="Safari">
-        </option><option value="_First title">
-    </option></datalist>
+
     
     <!-- script src="jquery-1.11.1.min.js"></script -->
     <!-- script src="zepto.min.js"></script -->
@@ -378,6 +370,12 @@
                    
                     filters[i] = filters[i].trim().toLowerCase();
                     
+					
+					
+					//if($(this).text().substring(0, 1) === "_" && filters[i].substring(0, 2) === "_#" && $(this).text().indexOf(filters[i].substring(1, filters[i].length)) > -1){
+					//	
+					//}
+					
                     // Find all tasks
                     if(filters[i].substring(0, 1) === "/"){
                         
@@ -425,19 +423,25 @@
                                 okToShow = false;
                             }
                         }
-                    }else if(filters[i].substring(0, 1) === "_"){
+                    //}else if(filters[i].substring(0, 1) === "_" || ($(this).text().substring(0, 1) === "_" && filters[i].substring(0, 1) === "#" && $(this).text().indexOf(filters[i]) > -1)){
+					
+					
+					}else if(filters[i].substring(0, 1) === "_" || foundMatchingTitle || ($(this).html().substring(0, 1) === "_" && filters[i].substring(0, 1) === "#" && $(this).text().indexOf(filters[i]) > -1)){
+					//}else if(filters[i].substring(0, 1) === "_"){
+                        //$(this).text().indexOf(filters[i]) > -1
+                        // Filter by titles and tags in title
+						
                         
-                        // Filter by titles
-                        
-                        if($(this).html().toLowerCase().indexOf(filters[i]) === 0){
+                        //if($(this).text().toLowerCase().indexOf(filters[i]) === 0){
+						if($(this).text().toLowerCase().indexOf(filters[i]) === 0 || ($(this).text().toLowerCase().indexOf(filters[i]) > -1 && filters[i].substring(0, 1) === "#")){
                             foundMatchingTitle = true;
-                            //$(this).removeClass("hide");
-                            console.log("ss");
+							
                         }else{
 
                             if(foundMatchingTitle === true){
                                 if($(this).html().substring(0, 1) !== "_"){
                                     //$(this).removeClass("hide");
+									//console.log($(this).text() + " | " + filters[i]);
                                 }else{
                                     foundMatchingTitle = false;
                                     okToShow = false;
@@ -445,42 +449,18 @@
                             }else{
                                 okToShow = false;
                             }
-
                         }
-                        
                     }else{
                         // Search for all
 
                         if($(this).html().toLowerCase().indexOf(filters[i]) > -1){
                             
-                            /*
-                            // If this is a details note (>) then check backwards for others and the master
-                            
-                            if($(this).html().substring(0, 4) === "&gt;"){
-                                //console.log("ss");
-                                var prev = $(this).prev();
-                                var stopIt = false;
-                                var reallyStopIt = false;
-                                do{
-                                    console.log("ss");
-                                    ///$(this).prev().html().toLowerCase();
-                                    //if($(prev).html().substring(0, 4) === "&gt;"){
-                                        $(prev).removeClass("hide");
-                                    //}
-                                    var prev = $(prev).prev();
-                                    if($(prev).html().substring(0, 4) !== "&gt;"){
-                                        stopIt = true;
-                                    }
-                                }while(stopIt === false);
-
-                                
-                            }
-                            */
-                            
                             // Do not filter in ">" notes
                             if($(this).html().substring(0, 4) === "&gt;"){
                                 okToShow = false;
                             }
+							
+							
                             
                         }else{
                             okToShow = false;
@@ -523,6 +503,8 @@
             var noDones = 0;
             var noUrgent = 0;
             for(var i = 0; i < lines.length; i++){
+                
+                // Get tasks data
                 if(lines[i].substring(0, 2) === "[]" || lines[i].substring(0, 3) === "[ ]" || lines[i].toLowerCase().substring(0, 3) === "[x]"){
                     noTasks++;
                 }
@@ -537,11 +519,15 @@
                     noDones++;
                 }
             }
+            
             var percentDone = parseInt(noDones/noTasks * 100);
             $("#report").append("<div>Tasks: "+noTasks+"</div>");
             $("#report").append("<div>Todos: "+noTodos+" ("+noUrgent+" urgent)</div>");
             $("#report").append("<div>Dones: "+noDones+" ("+percentDone+"%)</div>");
+
+            
         }
+       
         
         
         
@@ -644,7 +630,7 @@
             }else if($('#cli').val().substring(0, 1) === ":"){
                 runCLI($('#cli').val());
                 updateReports();
-                storeSet($("#editor").html());
+                //storeSet($("#editor").html());
             }
             
         });
