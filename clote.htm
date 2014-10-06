@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)file:///C:/Users/nbird/Documents/GitHub/clote/clote.htm -->
+<!-- saved from url=(0056)file:///C:/Users/nbird/Documents/GitHub/clote/clote.htm# -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
   <meta charset="utf-8">
@@ -13,7 +13,9 @@
         Yellow      = #FCB03C
         Orange      = #FC5B3F
         */
-        html, body{
+        
+		
+		html, body{
             padding:5px;
             margin:0;
             height:100%;
@@ -26,8 +28,11 @@
         body{
             background-color: #111;
             color:#ddd;
-            font-family: monospace, sans-serif;
-            font-size:14px;
+            /*font-family: monospace, sans-serif;*/
+			font-family:Palatino, Optima, Georgia, serif;
+			font-style: normal;
+			font-weight: normal;
+            font-size:16px;
             
         }
         hr{
@@ -38,47 +43,50 @@
         .title{
             font-size:26px;
             padding:5px;
+			padding-left:15px;
             background-color: #222;
-            margin-top:10px;
+            margin-top:20px;
+			border-radius: 25px;
             margin-bottom:10px;
             color: #068F86;
         }
         .task{
             color:#1d5d76;
             margin-left: 10px;
+			margin-top:5px;
         }
         .taskDone{
             color:#1d5d76;
             text-decoration: line-through;
             margin-left: 10px;
+			margin-top:5px;
         }
         .bullet{
             color:#ddd;
             margin-left: 0px;
             margin-left: 10px;
+			margin-top:5px;
         }
         .bullet::before { 
             content: "\025AA \000A0";
         }
         .indent{ 
-            margin-left: 20px;
+            margin-left: 25px;
             color:#999;
         }
         .urgent{
             color: #FC5B3F;
             font-weight: bold;
             margin-left: 10px;
+			margin-top:5px;
         }
-        .urgentbutton{
-            background-color: #FC5B3F;
-        }
+        
         .question{
             color: #6FD57F;
             margin-left: 10px;
+			margin-top:5px;
         }
-        .questionbutton{
-            background-color: #6FD57F;
-        }
+        
         .button{
             color: black;
             font-weight: bold;
@@ -96,18 +104,23 @@
             padding:10px;
             font-size: 16px;
             outline: 0;
+			border-radius: 25px;
+			
         }
         #topbar{
             /*position: fixed; */
             width: 100%;
             background-color: #000;
+			border-radius: 25px;
+			padding:10px;
         }
         #filters{
-            
+            color:#999;
+			margin-left:10px;
         }
         #filters::before { 
             content: "Filters: ";
-            color:#999;
+            
         }
         .hide{
             display: none;
@@ -115,7 +128,6 @@
         #editor{
             margin:0;
             outline: 0;
-            
         }
         #editorcontainer{
             /*border:1px solid red;
@@ -132,6 +144,7 @@
         #report{
             color:#555;
         }
+		
         
     </style>
 </head>
@@ -143,12 +156,13 @@
     </div>
     <div id="infopane" class="hide"><div>1 X marketplace</div><div>2 X tag</div><div>3 X xxx</div><div>1 X zzz</div></div>
     <div id="editorcontainer">
+        <div id="editorcontainer">
         <div id="editor" contenteditable="true" onkeyup="keyD()">
 			
             <div class="title">_Help - Command Line</div>
             <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
             <div class="bullet">To create a note, write something in the command line and hit enter.</div>
-            <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
+            <div class="bullet">To create a sub note, type &gt; followed by your note.</div><div class="indent">&gt; They look like this.</div>
             <div class="indent">&gt; They look like this</div>
             <div class="bullet">To create a task, type: [] task name then hit enter.</div>
             <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
@@ -173,19 +187,19 @@
             <div class="bullet">To get a list of all tags type :/tags.</div>
             <div class="bullet">You can refine your filter by separating filters with a +.</div>
             <div class="bullet">Hit enter to lock the filter in place.</div>
-            <div class="indent">&gt; Then clear the filter by typing : and enter.</div><div class="title">_Help - Saving</div><div class="bullet">Bullets (lines) are automatically saved to local storage.</div><div class="bullet">You can save/export this entire file by using CTRL+S. Simply save this entire web page.</div>
+            <div class="indent">&gt; Then clear the filter by typing : and enter.</div><div class="title">_Help - Saving</div><div class="bullet">Bullets (lines) are automatically saved to local storage.</div><div class="bullet">You can save/export this entire file by using CTRL+S. Simply save this entire web page.</div><div class="title">_Help - Scripts</div><div class="bullet">You can run notes as scripts. Just give the script a name followed by the indented script. Example:</div><div class="bullet">clote script</div><div class="indent">&gt; alert("Hello World!")</div><div class="indent">&gt; alert("Many lines")</div><div class="bullet">To run the script type =clote script in the command line and hit enter. Note the equals sign followed by the name.</div><div class="bullet">Here is another example which is great for creating bookmarks:</div><div class="bullet">BBC</div><div class="indent">&gt; location.href="http://news.bbc.co.uk"</div>
             
             <div class="title">_clote tasks</div>
             <div class="taskDone">[x] Use local storage to automatically save</div>
-            <div class="task">[] Stricter tag filtering</div><div class="taskDone">[x] Tags found in title should show whole section<br></div>
-            <div class="task">[] Use URL for routing/filtering</div>
-            <div class="taskDone">[x] CL bullets enter on last line of first visible section</div><div class="task">[] Fix localstorage for inline editing too</div>
+            <div class="task">[] Stricter tag filtering</div><div class="task">[] Link URLs</div><div class="task">[] Add scripts</div><div class="taskDone">[x] Tags found in title should show whole section<br></div>
+            <div class="taskDone">[x] Use URL for routing/filtering</div>
+            <div class="taskDone">[x] CL bullets enter on last line of first visible section</div><div class="taskDone">[x] Fix localstorage for inline editing too</div>
             
 
 
         </div>
     </div>
-    <div id="report"><hr><div>Line count: 122</div><div>Tasks: 19</div><div>Todos: 8 (0 urgent)</div><div>Dones: 11 (57%)</div></div>
+    <div id="report"><hr><div>Line count: 139</div><div>Tasks: 21</div><div>Todos: 8 (0 urgent)</div><div>Dones: 13 (61%)</div></div>
     
 
     
@@ -208,6 +222,7 @@
         
         var filters = "";
         
+		var clote_globalSaveTimer = false;
         
         var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
 
@@ -559,10 +574,35 @@
                         $("#filters").append(cli[i]);
                     }
                 }
+				
                 
                 filterBullets();
                 return false;
             }
+			
+			// Run scripts
+			if(cli.substring(0, 1) === "="){
+				var okToRun = false;
+				var script = "";
+				$('#editor').children('div').each(function () {
+					if(okToRun === true){
+						if($(this).text().substring(0, 1) === ">"){
+							script += $(this).text().substring(1, $(this).text().length) + "\n";
+						}else{
+							okToRun = false;
+							if(script){
+								eval(script);
+								return false;
+							}
+						}
+					}
+					if("="+$(this).text().trim() === cli){
+						//console.log($(this).text().trim() + " | " + cli);
+						okToRun = true;
+					}
+				});
+				return false;
+			}
             
             // swap out [date] for var d = new Date(year, month, day, hours, minutes);
             var d = new Date();
@@ -626,16 +666,44 @@
                 updateReports();
                 $('#cli').val("");
                 storeSet($("#editor").html());
+				location.hash = $("#filters").text();
                 return false;
             }else if($('#cli').val().substring(0, 1) === ":"){
                 runCLI($('#cli').val());
                 updateReports();
-                //storeSet($("#editor").html());
             }
             
         });
+		
+		// Auto save to local. Use timer so as not to do it on every character
+        $('#editor').keyup(function(e) {
+			if(e.which < 37 || e.which > 40){
+				if(clote_globalSaveTimer === false){
+					clote_globalSaveTimer = true;
+					setTimeout(function(){
+						clote_globalSaveTimer = false;
+						storeSet($("#editor").html());
+					},3000);
+				};
+			}
+        });
+		
+		
+		// Check for URL hash change
+		$(window).on('hashchange',function(){
+			//thingyUpdateScreen(window.location.hash.substring(1),null,1);
+			//console.log(window.location.hash.substring(1));
+			updateFilterFromHash(window.location.hash.substring(1));
+		});
         
-        
+		function updateFilterFromHash(hash){
+			//$("#cli").val(hash);
+			$("#filters").text(hash);
+			//runCLI($('#cli').val());
+			filterBullets();
+			updateReports();
+			$('#cli').val("");
+		}
         
 
         function startUp(){
@@ -666,8 +734,12 @@
                     
                 }
             }
-
-            
+			
+			var hash = window.location.hash.substring(1);
+            if(hash){
+				
+				updateFilterFromHash(hash);
+			}
             
             //}
         }
@@ -682,4 +754,4 @@
 
 
 
-</body></html>
+</div></body></html>
