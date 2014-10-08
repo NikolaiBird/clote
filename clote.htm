@@ -46,7 +46,7 @@
 			padding-left:15px;
             background-color: #222;
             margin-top:20px;
-			border-radius: 16px;
+			border-radius: 16px 0px 0px 16px;
             margin-bottom:10px;
             color: #999;
         }
@@ -99,9 +99,14 @@
         }
         
         .question{
-            color: #6FD57F;
-            margin-left: 10px;
+			background-color:#ddd;
+			
+			color:#216c1e;
+			margin-left: 10px;
 			margin-top:5px;
+			border-radius: 16px 0px 0px 16px;
+			padding:4px;
+			padding-left:10px;
         }
         
         .button{
@@ -130,7 +135,8 @@
             /*position: fixed; */
             width: 100%;
             background-color: #000;
-			border-radius: 16px;
+			
+			border-radius: 16px 0px 0px 16px;
 			padding:10px;
         }
         #filters{
@@ -177,9 +183,10 @@
     <div id="infopane" class="hide"><div>1 X marketplace</div><div>2 X tag</div><div>3 X xxx</div><div>1 X zzz</div></div>
     <div id="editorcontainer">
         <div id="editorcontainer">
-        <div id="editor" contenteditable="true" onpaste='handlepaste(this, event)'>
+        <div id="editor" contenteditable="true" onpaste="handlepaste(this, event)"><div class="title">_Clote</div><div class="bullet">Welcome to clote, the command line note taking app!</div><div class="bullet">Try out. Save to your local machine. Run it offline.</div><div class="title">_Daily notes 8/10/2014 #work</div><div class="bullet">Client wants more greater impact</div><div class="indent">&gt; Perhaps test alternative colour scheme</div><div class="task">[] Test alternative colours</div><div class="task">[] Find better menu location</div><div class="task">[] Call James about Fandoo site</div><div class="task urgent">[]! Stock up on tea</div><div class="task">[] Set up Ember CLI</div>
 			
-
+			<div class="title">_Shopping</div><div class="bullet">Tea</div><div class="bullet">Milk</div><div class="bullet">Sugar</div><div class="bullet">Butter</div><div class="indent">&gt; Spreadable!</div><div class="bullet">Cheese</div><div class="bullet">Bread</div><div class="task">[] Pick up package</div><div class="task">[] Stop by DIY and get bolts</div>
+			
 			
             <div class="title">_Help - Command Line</div>
             <div class="bullet">To create a new title, start with an underscore _ followed by the title then hit enter.</div>
@@ -187,11 +194,11 @@
             <div class="bullet">To create a sub note, type &gt; followed by your note.</div>
 			<div class="indent">&gt; They look like this.</div>
             <div class="indent">&gt; They look like this</div>
-            <div class="bullet">To create a task, type: [] task name then hit enter.</div>
+            <div class="bullet">To create a task, type: [] task name then hit enter.</div><div class="task">[] They look like this</div>
             <div class="bullet">To complete a task, type: [x] task name then hit enter.</div>
             <div class="indent">&gt; see _Help - Editing to change tasks</div>
             <div class="bullet">For an urgent message, type ! followed by the note.</div>
-            <div class="urgent">! This is urgent</div>
+            <div class="urgent">! This is urgent</div><div class="task urgent">[]! You can have urgent tasks too using ! after the box</div>
             <div class="bullet">You can type [date] which will automatically insert the date.</div>
             <div class="bullet">To tag a note use #tag at the end of the note.</div>
             <div class="bullet">To tag a section use a tag at the end of the title.</div>
@@ -213,16 +220,21 @@
             <div class="indent">&gt; Then clear the filter by typing : and enter.</div><div class="title">_Help - Saving</div><div class="bullet">Bullets (lines) are automatically saved to local storage.</div><div class="bullet">You can save/export this entire file by using CTRL+S. Simply save this entire web page.</div><div class="title">_Help - Scripts</div><div class="bullet">You can run notes as scripts. Just give the script a name followed by the indented script. Example:</div><div class="bullet">clote script</div><div class="indent">&gt; alert("Hello World!")</div><div class="indent">&gt; alert("Many lines")</div><div class="bullet">To run the script type =clote script in the command line and hit enter. Note the equals sign followed by the name.</div><div class="bullet">Here is another example which is great for creating bookmarks:</div><div class="bullet">BBC</div><div class="indent">&gt; location.href="http://news.bbc.co.uk"</div>
             
             <div class="title">_clote tasks</div>
-            <div class="taskDone">[x] Use local storage to automatically save</div>
-            <div class="task">[] Stricter tag filtering</div><div class="task">[] Link URLs</div><div class="task">[] Add scripts</div><div class="taskDone">[x] Tags found in title should show whole section<br></div>
+            <div class="task">[] Fix missing sub notes when filtering</div>
+            <div class="task">[] Stricter tag filtering</div>
+			<div class="task">[] Link URLs</div>
+			<div class="taskDone">[x] Use local storage to automatically save</div>
+			<div class="taskDone">[x] Add scripts</div>
+			<div class="taskDone">[x] Tags found in title should show whole section</div>
             <div class="taskDone">[x] Use URL for routing/filtering</div>
-            <div class="taskDone">[x] CL bullets enter on last line of first visible section</div><div class="taskDone">[x] Fix localstorage for inline editing too</div>
+            <div class="taskDone">[x] CL bullets enter on last line of first visible section</div>
+			<div class="taskDone">[x] Fix localstorage for inline editing too</div>
             
 
 
         </div>
     </div>
-    <div id="report"><hr><div>Line count: 139</div><div>Tasks: 21</div><div>Todos: 8 (0 urgent)</div><div>Dones: 13 (61%)</div></div>
+    <div id="report"><hr><div>Line count: 74</div><div>Tasks: 18</div><div>Todos: 12 (2 urgent)</div><div>Dones: 6 (33%)</div></div>
     
 
     
